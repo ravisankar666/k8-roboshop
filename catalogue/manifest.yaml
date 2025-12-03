@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: catalogue-cofigmap
+  name: catalogue-configmap
   namespace: roboshop
 data:
   MONGO: "true"
