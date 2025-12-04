@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: mysql
   namespace: roboshop
+data:
+  my.cnf: |
+    [mysqld]
+    innodb_redo_log_capacity = 2G  
   # these are replica set labels
   labels:
     project: roboshop
