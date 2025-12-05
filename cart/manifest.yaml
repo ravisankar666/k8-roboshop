@@ -24,7 +24,7 @@ spec:
     # these labels are used to select pods
     matchLabels:
       project: cart
-      component: catalogue
+      component: cart
       tier: backend
   # pod definition
   template:
