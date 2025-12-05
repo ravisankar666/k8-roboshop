@@ -4,25 +4,26 @@ metadata:
   name: cart
   namespace: roboshop
 data:
-  MONGO: "true"
-  MONGO_URL: "mongodb://mongodb:27017/catalogue"
+  REDIS_HOST: "redis"
+  CATALOGUE_HOST: "catalogue"
+  CATALOGUE_PORT: "8080"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
+  name: cart
   namespace: roboshop
   # these are replica set labels
   labels:
     project: roboshop
-    component: catalogue
+    component: cart
     tier: backend
 spec:
   replicas: 1
   selector:
     # these labels are used to select pods
     matchLabels:
-      project: roboshop
+      project: cart
       component: catalogue
       tier: backend
   # pod definition
@@ -30,16 +31,16 @@ spec:
     metadata:
       labels:
         project: roboshop
-        component: catalogue
+        component: cart
         tier: backend
     spec:
       containers:
       - name: catalogue
-        image: ravisankar666/catalogue:v1
+        image: ravisankar666/cart:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: catalogue
+            name: cart
         ports:
         - name: liveness-port
           containerPort: 8080
@@ -59,12 +60,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue
+  name: cart
   namespace: roboshop
 spec:
   selector:
     project: roboshop
-    component: catalogue
+    component: cart
     tier: backend
   ports:
     - protocol: TCP
