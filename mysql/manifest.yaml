@@ -41,12 +41,12 @@ spec:
         #    port: 3306
         #  initialDelaySeconds: 20
         #  periodSeconds: 6
-        volumeMounts:
+        volumeMounts:                    #container level
         - name: mysql-config
           mountPath: /etc/mysql/conf.d/my.cnf
           subPath: my.cnf
 
-      volumes:
+      volumes:                               #pod level
         - name: mysql-config
           configMap:
             name: mysql
