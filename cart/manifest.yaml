@@ -23,7 +23,7 @@ spec:
   selector:
     # these labels are used to select pods
     matchLabels:
-      project: cart
+      project: roboshop
       component: cart
       tier: backend
   # pod definition
