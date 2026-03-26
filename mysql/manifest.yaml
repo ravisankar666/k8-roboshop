@@ -1,12 +1,22 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ConfigMap
 metadata:
   name: mysql
   namespace: roboshop
 data:
   my.cnf: |
     [mysqld]
-    innodb_redo_log_capacity = 2G  
+    innodb_redo_log_capacity = 2G
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: roboshop
+
   # these are replica set labels
   labels:
     project: roboshop
